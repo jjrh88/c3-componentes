@@ -1,0 +1,26 @@
+.bgRed{
+    background: red;
+}
+
+.bgRedDos{
+    background: black;
+}
+
+.bgRedTres{
+    color: powderblue;
+}
+
+
+.tamano{
+   font-size: 50px;
+   color:gray;  
+}
+
+.bgGreen{
+    background: green;
+}
+
+.bgOrange{
+    background: orange;
+}
+

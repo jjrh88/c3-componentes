@@ -1,0 +1,8 @@
+.cuadro{
+    background-color: red;
+    height: 100px;
+    width: 400px;
+    border-radius: 3px;
+    color: #ffff;
+    margin: 3px;
+}

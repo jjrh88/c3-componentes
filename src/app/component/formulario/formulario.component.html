@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div class="text-center">
+            <form [formGroup]="form">
+                <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" [ngClass]="{ 'error-validation': submitted && getForm['nombre'].errors,
+                     'success-validation':nombre.valid && (nombre.dirty || nombre.touched) }" class="form-control"
+                     placeholder="Ingrese su nombre" formControlName="nombre">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Documento</label>
+                    <input type="text" formControlName="documento" class="form-control" 
+                    [ngClass]="{ 'error-validation': submitted && getForm['documento'].errors,
+                'success-validation':documento.valid && (documento.dirty || documento.touched) }"
+                        placeholder="Ingrese su documento">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Correo</label>
+                    <input type="email" formControlName="email" class="form-control" 
+                    [email]="true"
+                    [ngClass]="{ 'error-validation': submitted && getForm['email'].errors,
+                'success-validation':email.valid && (email.dirty || documento.touched) }"
+                        placeholder="Ingrese su correo">
+                </div>
+               
+               
+                {{ email.valid }} <br>
+                {{ email.dirty }} <br>
+                {{ email.touched }} <br>
+                <p>myForm value: {{ form.value | json }}</p>
+                <p>myForm status: {{ form.status | json }}</p>
+
+                <div class="mb-3">
+                    <button class="btn btn-primary" (click)="enviar()">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<router-outlet></router-outlet>
