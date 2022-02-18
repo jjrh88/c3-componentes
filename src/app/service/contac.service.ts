@@ -6,40 +6,39 @@ import { config } from '../config/config';
 @Injectable({
   providedIn: 'root'
 })
-export class ContacService{
-  
+export class ContacService {
+
   config = config
-  constructor(private http: HttpClient)
-  {
+  constructor(private http: HttpClient) {
 
   }
 
-  save(data: any){
-      return this.http.post(this.config.url+"/api/contact/", data)
+  save(data: any) {
+    return this.http.post(this.config.url + "/api/contact/", data)
   }
 
-  update(data: any){
-    return this.http.put(this.config.url+"/api/contact/", data)
+  update(data: any) {
+    return this.http.put(this.config.url + "/api/contact/", data)
   }
 
-  get(){
-      return this.http.get(this.config.url+"/api/contact/")
+  get() {
+    return this.http.get(this.config.url + "/api/contact/")
   }
 
-  getById(id: any | string ){
-    return this.http.get(this.config.url+`/api/contact/${id}`)
+  getById(id: any | string) {
+    return this.http.get(this.config.url + `/api/contact/${id}`)
   }
 
-  search(data: any){
-      this.http.post(this.config+"api/contact/search", data)
+  search(data: any) {
+    return this.http.post(this.config.url + "/api/contact/search", data)
   }
 
-  findById(data: any){
-    this.http.post(this.config+"api/contact/findById", data)
+  findById(data: any) {
+    return this.http.post(this.config.url + "/api/contact/findById", data)
   }
 
-  deleteById(id: any | string ){
-    return this.http.delete(this.config.url+`/api/contact/${id}`)
+  deleteById(id: any | string) {
+    return this.http.delete(this.config.url + `/api/contact/${id}`)
   }
 
 }
