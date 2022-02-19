@@ -33,8 +33,8 @@ export class ContacService {
     return this.http.post(this.config.url + "/api/contact/search", data)
   }
 
-  findById(data: any) {
-    return this.http.post(this.config.url + "/api/contact/findById", data)
+  findById(_id: string) {
+    return this.http.get(this.config.url + `/api/contact/${_id}`)
   }
 
   deleteById(id: string) {

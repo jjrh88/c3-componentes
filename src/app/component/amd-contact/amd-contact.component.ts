@@ -98,4 +98,11 @@ export class AmdContactComponent implements OnInit {
       this.getContacts()
     })
   }
+
+  findById(_id: string){
+    console.log( _id )
+    this.conctacService.findById(_id).subscribe((res:any)=>{
+      console.log( res )
+    })
+  }
 }

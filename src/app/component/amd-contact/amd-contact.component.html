@@ -1,6 +1,8 @@
 
 <input type="search" (keyup)="search($event)" 
 class="form-control" placeholder="Buscar por nombre">
+<br>
+
 <table class="table">
     <thead>
       <tr>
@@ -14,23 +16,23 @@ class="form-control" placeholder="Buscar por nombre">
     <tbody>
       <tr *ngFor="let item of listContact; let i = index">
         <td scope="row" >
-          <span  *ngIf="!item.status">{{ item.name }}</span> 
+          <span class="pointer" (click)="findById(item._id)" *ngIf="!item.status">{{ item.name }}</span> 
           <input *ngIf="item.status" (keyup)="change(item,$event, i, 'name')" 
           class="form-control" value="{{item.name}}">
         </td>
         <td>
-          <span *ngIf="!item.status"> {{ item.email }}</span>
+          <span class="pointer" (click)="findById(item._id)" *ngIf="!item.status"> {{ item.email }}</span>
           <input *ngIf="item.status" class="form-control" value="{{item.email}}" 
           (keyup)="change(item,$event, i, 'email')">
         </td>
         <td>
-          <span *ngIf="!item.status"> {{ item.subject }}</span>
+          <span class="pointer" (click)="findById(item._id)" *ngIf="!item.status"> {{ item.subject }}</span>
           <input *ngIf="item.status" class="form-control" value="{{item.subject}}" 
           (keyup)="change(item,$event, i, 'subject')">
         </td>
         <td>
             <p>
-              <span *ngIf="!item.status"> {{ item.message }}</span>
+              <span class="pointer" (click)="findById(item._id)" *ngIf="!item.status"> {{ item.message }}</span>
               <textarea *ngIf="item.status" class="form-control" (keyup)="change(item,$event, i, 'message')"> {{item.message}}</textarea>
             </p>
         </td>
