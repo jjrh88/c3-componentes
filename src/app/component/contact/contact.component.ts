@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContacService } from 'src/app/service/contac.service';
+import { WebsocketService } from 'src/app/service/webSocket';
 
 @Component({
   selector: 'app-contact',
@@ -17,8 +18,10 @@ export class ContactComponent implements OnInit {
   sub = false
 
 
+  
   constructor(private fb: FormBuilder,
-              private conctacService: ContacService) { 
+              private conctacService: ContacService,
+              private webSocket: WebsocketService) { 
     this.form = this.fb.group({
       name:['', Validators.required],
       email:['', Validators.required],
@@ -42,18 +45,11 @@ export class ContactComponent implements OnInit {
   sendMessage(){
     if(this.form.invalid)
      return 
-
-     console.log(this.form.value)
-     /*let dataSend = {
-        name:this.form.get('name')?.value,
-        email:this.form.get('email')?.value,
-        subject :this.form.controls['subject'].value,
-        message :this.form.controls['message'].value
-     }*/
-
+     
      this.conctacService.save( this.form.value).subscribe((res:any)=>{
-       if(res.status)
-         console.log("contacto creado")
+       if(res.status){
+         this.webSocket.saveNewContac(this.form.value)
+       }
      })
   }
 

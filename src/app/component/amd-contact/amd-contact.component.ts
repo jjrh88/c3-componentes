@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ContacService } from 'src/app/service/contac.service';
+import { io, Socket} from 'socket.io-client';
+import { config } from 'src/app/config/config';
+
 
 @Component({
   selector: 'app-amd-contact',
@@ -11,11 +14,24 @@ export class AmdContactComponent implements OnInit {
   updatedSend: any
   reverseData: any
   listContact: any[] = []
+  
+  config = config
+  socket: Socket 
 
-  constructor(private conctacService: ContacService) { }
+ 
+  constructor(private conctacService: ContacService) {
+                this.socket = io(this.config.url)
+                this.obtenerRespuesta()
+              }
 
   ngOnInit(): void {
     this.getContacts()
+  }
+
+  obtenerRespuesta(){
+    this.socket.on('emitiendo',(data)=>{
+      this.getContacts()
+    })
   }
 
   getContacts(){
@@ -39,20 +55,19 @@ export class AmdContactComponent implements OnInit {
 
   reset(index: any){
     console.log( this.reverseData )
-    //this.listContact[index] =  this.reverseData
+    /*this.listContact[index] = this.reverseData
     this.listContact[index]['status'] = false
-    this.updatedSend = null
+    this.updatedSend = null*/
   }
-  
-  edit(item: any){
+
+  edit(item?: any, index?: any){
     if(typeof this.updatedSend === "object" && this.updatedSend != null ){
       this.update()
     }else{
-      this.listContact.forEach(i => {
+        this.listContact.forEach(i => {
         i.status = false
         i.textAction = "Editar"
         if(i._id == item._id){
-          this.reverseData = i
           i.status = true
           i.textAction = "Guardar"
         }
@@ -68,13 +83,19 @@ export class AmdContactComponent implements OnInit {
         i[propiedad] =  event.target.value
       }
     });*/
-    
   }
  
   update(){
     this.conctacService.update(this.updatedSend).subscribe((res:any)=>{
       console.log( res )
       this.updatedSend = null
+    })
+  }
+
+  delete(_id:string){
+    console.log( _id )
+    this.conctacService.deleteById(_id).subscribe((res:any)=>{
+      this.getContacts()
     })
   }
 }

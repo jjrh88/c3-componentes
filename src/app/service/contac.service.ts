@@ -37,7 +37,7 @@ export class ContacService {
     return this.http.post(this.config.url + "/api/contact/findById", data)
   }
 
-  deleteById(id: any | string) {
+  deleteById(id: string) {
     return this.http.delete(this.config.url + `/api/contact/${id}`)
   }
 

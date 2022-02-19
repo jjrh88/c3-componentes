@@ -35,7 +35,7 @@ class="form-control" placeholder="Buscar por nombre">
             </p>
         </td>
         <td>
-          <button class="btn btn-primary" (click)="edit(item)">
+          <button class="btn btn-primary" (click)="edit(item, i)">
             <span *ngIf="!item.status">
               {{ item.textAction }}
             </span>
@@ -45,6 +45,7 @@ class="form-control" placeholder="Buscar por nombre">
           </button> 
         </td>
         <td><button *ngIf="item.status" class="btn btn-danger" (click)="reset(i)">Canclelar</button> </td>
+        <td><button class="btn btn-danger" (click)="delete(item._id)">Eliminar</button> </td>
       </tr>
     </tbody>
   </table>
