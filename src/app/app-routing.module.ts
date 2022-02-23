@@ -9,6 +9,7 @@ import { LoginComponent } from './component/login/login.component';
 import { NotasComponent } from './component/notas/notas.component';
 import { RegisterComponent } from './component/register/register.component';
 import { TestComponent } from './component/test/test.component';
+import { UploadComponent } from './component/upload/upload.component';
 
 //Definir las rutas de nuestra aplicación
 const routes: Routes = [
@@ -31,6 +32,7 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'notas', component: NotasComponent },
+  { path: 'upload', component: UploadComponent },
   { path: 'inicio', component: InitComponent },
   {
     path: '**',

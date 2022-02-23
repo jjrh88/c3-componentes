@@ -25,6 +25,7 @@ import { ContactComponent } from './component/contact/contact.component';
 import { AdminComponent } from './component/admin/admin.component';
 import { InitComponent } from './component/init/init.component';
 import { AmdContactComponent } from './component/amd-contact/amd-contact.component';
+import { UploadComponent } from './component/upload/upload.component';
 
 /**/
 @NgModule({
@@ -49,7 +50,8 @@ import { AmdContactComponent } from './component/amd-contact/amd-contact.compone
     ContactComponent,
     AdminComponent,
     InitComponent,
-    AmdContactComponent
+    AmdContactComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
