@@ -10,6 +10,7 @@ import { NotasComponent } from './component/notas/notas.component';
 import { RegisterComponent } from './component/register/register.component';
 import { TestComponent } from './component/test/test.component';
 import { UploadComponent } from './component/upload/upload.component';
+import { AuthGuard } from './guards/auth.guard';
 
 //Definir las rutas de nuestra aplicación
 const routes: Routes = [
@@ -20,7 +21,7 @@ const routes: Routes = [
     ]
   },
   { 
-    path: 'formulario', component: FormularioComponent,
+    path: 'formulario', component: FormularioComponent, canActivate: [ AuthGuard ],
     children:[
       { path: 'listado', component: ListadoComponent,
        children:[
@@ -32,7 +33,9 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent },
   { path: 'notas', component: NotasComponent },
-  { path: 'upload', component: UploadComponent },
+  { 
+    path: 'upload', component: UploadComponent, canActivate: [ AuthGuard ]
+  },
   { path: 'inicio', component: InitComponent },
   {
     path: '**',
