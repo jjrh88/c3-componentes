@@ -1,55 +1,22 @@
 
 <div class="content">
-    <div class="text-center">
-
-         <div [ngSwitch]="opc">
-            
-            <!--input type="text" [ngStyle]="{'background': 'yellow'}" class="form-control" 
-             *ngSwitchCase="1"><br>
-
-             <input type="text" [ngStyle]="{'background': 'blue'}"  class="form-control" 
-             *ngSwitchCase="2"><br>
-
-             <input type="text" [ngClass]="'bgRed tamano'"  class="form-control" 
-             *ngSwitchCase="3"><br>
-
-             <input type="text" [ngClass]="['bgRed', 'tamano']"  class="form-control" 
-             *ngSwitchCase="3"><br-->
-
-            Valor de OPC => {{ opc }} <br>
-            Llamando mi fn:  {{ validarDesdeUnNgClass() }}
-             <input type="text" [ngClass]="{bgRed: validarDesdeUnNgClass() == 3}"  class="form-control" 
-             ><br>
-
-            
-
-             <!--input type="text"  [ngClass]="'bgGreen tamano'" class="form-control" 
-             *ngSwitchCase="4"><br>
-
-             <input type="text"  [ngClass]="'bgOrange tamano'"  class="form-control" 
-             *ngSwitchCase="5"><br-->
-
-             <div *ngSwitchDefault>Salida por defecto</div>
-
+    <div class="text-center mgt">
+         <h1>Inicio de sessión</h1>
+         <div class="mb-3 row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Usuario</label>
+            <div class="col-sm-8">
+              <input type="text"  class="form-control" placeholder="usuario">
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-8">
+              <input type="password" placeholder="contraseña" class="form-control">
+            </div>
          </div>
-   
-           
-        </div>
-       
-        <div class="row">
-            <button class="btn btn-success" (click)="incrementar()">Incrementar</button>
-        </div>
-
-        <div class="row">
-            <h1 [hidden]="ocultar">Quiero ocultarme...</h1>
-            <button class="btn btn-secondary" (click)="probandoOcultarConHidden()">Ocultar/Mostrar</button>
-        </div>
-       
-        <div class="row">
-            <input *ngIf="mostrarOcultar"  class="form-control" (keyup.enter)="capturarLoEscrito($event)" 
-            type="text" [(ngModel)]="nombre">
-            <button (click)="calcularEdad()"
-             class="btn btn-primary">Evento click</button>
-        </div>
-   
+         <div class="mb-3 row">
+            <div class="col-sm-8">
+                <button class="btn btn-primary">Login</button>
+              </div>
+         </div>
 </div>
