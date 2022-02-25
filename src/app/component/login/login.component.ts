@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AbstractControl, Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/service/auth.service';
 
 
 @Component({
@@ -9,81 +11,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
   
-  mostrarOcultar = false
-  ocultar = true
-  opc = 1
-  /*
-    POO: MODIFICADORES DE ACCESSO
-    private: Privado: se accede desde la misma clase o paquete: { "a", "b", "c"}
-      Se pueden definir variables, clases, intefaces
-    public : Publico  
-      Se pueden definir variables, clases, intefaces
-  */
+  form: FormGroup
+  user: AbstractControl
+  password: AbstractControl
+  submited = false
 
-  //modelos 
-  nombre = "";
-  usuario = "";
+  constructor(private fb: FormBuilder,
+              private authService: AuthService
+      ) { 
+      this.form = this.fb.group({
+        user: ['', Validators.required],
+        password: ['', Validators.required]
+      })
 
-  /*
-   Utilidades()=> loading(), convertirCadenaABase64()
-   Inyección de dependencias
-  */
-
-
-   /*Directivas: */
-  constructor() { 
-   //definicion o inicializacion de objetos
-   /*alert("Por favor esperar 3 segundos para aparecer")
-   setTimeout(() => {
-     this.mostrarOcultar = true
-   }, 3000);*/
-  }
-
-  
-
-  ngOnInit(): void {
-  
-  }
-
-  //funciones
-  //camelcase :> Definir de forma clara su codigo fuente
-  calcularEdad(){
-    this.mostrarOcultar =! this.mostrarOcultar
- 
-  }
-
-  capturarLoEscrito(evento?:any){
-    console.log(this.nombre)
-    //console.log(evento.target.value)
-  }
-
-  incrementar(){
-    let aux = this.opc++
-    
-    this.validarDesdeUnNgClass(aux)
-  }
-
-  validarDesdeUnNgClass(opc?:number){
-    console.log(this.opc)
-    if(opc == null)
-      opc = 2
-
-    return opc;
+      this.user = this.form.controls['user']
+      this.password = this.form.controls['password']
    }
 
-  probandoOcultarConHidden(){
-    this.ocultar =! this.ocultar
-  }
-  definicionSwitch(opc: number){
-    switch(opc){
-      case 1:
-        break;
-      case 2:
-        break;
-      case 3:
-        break;
-      default:
-         console.log("Por favor ingrese una opción correcta!")
-    }
-  }
+   ngOnInit(): void {
+  
+   }
+
+   get f(){
+     return this.form.controls
+   }
+
+   auth(){
+      this.submited = true
+      if(this.form.invalid)
+       return
+
+      this.authService.auth(this.form.value).subscribe((res:any)=>{
+        console.log( res )
+        if(res.status){
+          sessionStorage.setItem('token',res.token)
+          sessionStorage.setItem('user',res.userFound.user)
+          sessionStorage.setItem('_id',res.userFound._id)
+          sessionStorage.setItem('rol',res.rol)
+        }
+      })
+   }
 }
