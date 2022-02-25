@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/service/auth.service';
+import { StorageService } from 'src/app/service/storage.service';
 
 
 @Component({
@@ -17,7 +19,9 @@ export class LoginComponent implements OnInit {
   submited = false
 
   constructor(private fb: FormBuilder,
-              private authService: AuthService
+              private authService: AuthService,
+              private storagService: StorageService,
+              private route: Router
       ) { 
       this.form = this.fb.group({
         user: ['', Validators.required],
@@ -42,12 +46,13 @@ export class LoginComponent implements OnInit {
        return
 
       this.authService.auth(this.form.value).subscribe((res:any)=>{
-        console.log( res )
         if(res.status){
+          this.storagService.modules = res.modules.modulo;
+          this.storagService.user = res.userFound.user
+          this.storagService.rol = res.rol
+          this.storagService._id = res._id
           sessionStorage.setItem('token',res.token)
-          sessionStorage.setItem('user',res.userFound.user)
-          sessionStorage.setItem('_id',res.userFound._id)
-          sessionStorage.setItem('rol',res.rol)
+          this.route.navigate(['/admin'])
         }
       })
    }

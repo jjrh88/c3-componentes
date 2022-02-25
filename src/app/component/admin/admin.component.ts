@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-admin',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
-  constructor() { }
+  user: any
+  rol: any
+  modules: any
+
+  constructor(private storageService: StorageService) { }
 
   ngOnInit(): void {
+    this.getInfo()
+  }
+  
+  getInfo(){
+    this.user = this.storageService.user
+    this.rol = this.storageService.rol
+    this.modules = this.storageService.modules
+    console.log( this.modules )
   }
 
 }

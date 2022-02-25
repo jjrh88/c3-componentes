@@ -15,7 +15,7 @@ import { AuthGuard } from './guards/auth.guard';
 //Definir las rutas de nuestra aplicación
 const routes: Routes = [
   {
-    path:'admin', component: AdminComponent,
+    path:'admin', component: AdminComponent, canActivate: [ AuthGuard ],
     children:[
       { path:'contactos', component: AmdContactComponent }
     ]
