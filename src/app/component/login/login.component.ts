@@ -51,7 +51,9 @@ export class LoginComponent implements OnInit {
           this.storagService.user = res.userFound.user
           this.storagService.rol = res.rol
           this.storagService._id = res._id
+          this.storagService.statusModules = true
           sessionStorage.setItem('token',res.token)
+          sessionStorage.setItem('rol',res.rol)
           this.route.navigate(['/admin'])
         }
       })

@@ -26,6 +26,10 @@ import { AdminComponent } from './component/admin/admin.component';
 import { InitComponent } from './component/init/init.component';
 import { AmdContactComponent } from './component/amd-contact/amd-contact.component';
 import { UploadComponent } from './component/upload/upload.component';
+import { ObserverComponent } from './component/observer/observer.component';
+import { UsuariosComponent } from './component/usuarios/usuarios.component';
+import { ContabilidadComponent } from './component/contabilidad/contabilidad.component';
+import { InventarioComponent } from './component/inventario/inventario.component';
 
 /**/
 @NgModule({
@@ -51,7 +55,11 @@ import { UploadComponent } from './component/upload/upload.component';
     AdminComponent,
     InitComponent,
     AmdContactComponent,
-    UploadComponent
+    UploadComponent,
+    ObserverComponent,
+    UsuariosComponent,
+    ContabilidadComponent,
+    InventarioComponent
   ],
   imports: [
     BrowserModule,

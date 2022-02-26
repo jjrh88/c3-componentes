@@ -8,4 +8,5 @@ export class StorageService {
     user: string | any
     rol: string | any
     _id : string | any
+    statusModules = false
 }
